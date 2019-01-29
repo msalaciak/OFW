@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		34581DA721FF875900470FD8 /* Particle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 34581DA521FF875900470FD8 /* Particle.cpp */; };
-		34581DAA21FF8AE600470FD8 /* Params.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 34581DA821FF8AE600470FD8 /* Params.cpp */; };
 		E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4B69E1D0A3A1BDC003C02F2 /* main.cpp */; };
 		E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */; };
 /* End PBXBuildFile section */
@@ -28,8 +27,6 @@
 /* Begin PBXFileReference section */
 		34581DA521FF875900470FD8 /* Particle.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Particle.cpp; sourceTree = "<group>"; };
 		34581DA621FF875900470FD8 /* Particle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Particle.h; sourceTree = "<group>"; };
-		34581DA821FF8AE600470FD8 /* Params.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Params.cpp; sourceTree = "<group>"; };
-		34581DA921FF8AE600470FD8 /* Params.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Params.h; sourceTree = "<group>"; };
 		E42962AC2163EDD300A6A9E2 /* ofCamera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ofCamera.cpp; path = ../../../libs/openFrameworks/3d/ofCamera.cpp; sourceTree = SOURCE_ROOT; };
 		E42962AD2163EDD300A6A9E2 /* ofMesh.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ofMesh.h; path = ../../../libs/openFrameworks/3d/ofMesh.h; sourceTree = SOURCE_ROOT; };
 		E42962AE2163EDD300A6A9E2 /* ofNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ofNode.h; path = ../../../libs/openFrameworks/3d/ofNode.h; sourceTree = SOURCE_ROOT; };
@@ -541,8 +538,6 @@
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
 				34581DA521FF875900470FD8 /* Particle.cpp */,
 				34581DA621FF875900470FD8 /* Particle.h */,
-				34581DA821FF8AE600470FD8 /* Params.cpp */,
-				34581DA921FF8AE600470FD8 /* Params.h */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -648,7 +643,6 @@
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				34581DA721FF875900470FD8 /* Particle.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
-				34581DAA21FF8AE600470FD8 /* Params.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,19 +8,18 @@
 #include <stdio.h>
 #include "ofMain.h"
 
+
 class Particle {
 public:
-    Particle(); //constructor
+  
+    Particle();
     void setup();
-    void update();
+    void update()
     void draw();
-    
+    void bounding();
     ofPoint pos;
     ofPoint vel;
-    float time;
-    float lifeTime;
-    bool live;
-    ofPoint randomPointInCircle();
+    float radius;
     
     
     

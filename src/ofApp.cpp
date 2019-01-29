@@ -4,16 +4,42 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-cout<<"hi";
+  
+    for(int i=0; i < num; i++) {
+        Particle p;
+        particles.push_back(p);
+        particles[i].setup();
+        color.push_back(ofColor(ofRandom(255),ofRandom(255),ofRandom(255)));
+        
+        
+    }
+    
+    
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-
+    for(int i =0; i<num; i++){
+        particles[i].update();
+        particles[i].bounding();
+        
+        
+    }
+   
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+    ofBackground(0);
+    
+    for(int i=0; i<num; i++){
+        ofSetColor(color[i]);
+//        particles[i].draw();
+        
+    }
+    
+    
     
 }
 
