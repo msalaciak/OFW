@@ -8,7 +8,7 @@
 #include "Particle.h"
 
 Particle :: Particle() {
-    radius = 1.5;
+    radius = 5;
     
 }
 
@@ -16,6 +16,14 @@ void Particle :: setup() {
     pos = ofPoint(0,0,0);
     vel = ofPoint(ofRandom(-1,1),ofRandom(-1,1),ofRandom(-1,1));
 }
+
+void Particle::draw(){
+    
+    ofDrawCircle(pos.x, pos.y, pos.z, radius);
+    
+    
+}
+
 
 void Particle :: update() {
     pos = pos +vel;

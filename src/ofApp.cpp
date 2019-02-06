@@ -22,7 +22,7 @@ void ofApp::setup(){
 void ofApp::update(){
     for(int i =0; i<num; i++){
         particles[i].update();
-        particles[i].bounding();
+//        particles[i].bounding();
         
         
     }
@@ -34,8 +34,10 @@ void ofApp::draw(){
     ofBackground(0);
     
     for(int i=0; i<num; i++){
+        
         ofSetColor(color[i]);
-//        particles[i].draw();
+        particles[i].draw();
+    
         
     }
     

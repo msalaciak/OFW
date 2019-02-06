@@ -14,8 +14,9 @@ public:
   
     Particle();
     void setup();
-    void update()
+    void update();
     void draw();
+    
     void bounding();
     ofPoint pos;
     ofPoint vel;
