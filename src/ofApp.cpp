@@ -6,9 +6,10 @@
 void ofApp::setup(){
   
     for(int i=0; i < num; i++) {
-        Particle p;
-        particles.push_back(p);
-        particles[i].setup();
+//        Particle p;
+        Particle part;
+        particles.push_back(&part);
+        particles[i]->setup();
         color.push_back(ofColor(ofRandom(255),ofRandom(255),ofRandom(255)));
         
         
@@ -21,8 +22,8 @@ void ofApp::setup(){
 //--------------------------------------------------------------
 void ofApp::update(){
     for(int i =0; i<num; i++){
-        particles[i].update();
-//        particles[i].bounding();
+        particles[i]->update();
+        particles[i]->bounding();
         
         
     }
@@ -36,7 +37,7 @@ void ofApp::draw(){
     for(int i=0; i<num; i++){
         
         ofSetColor(color[i]);
-        particles[i].draw();
+        particles[i]->draw();
     
         
     }
