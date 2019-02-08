@@ -5,12 +5,14 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
   
+     ofSetCircleResolution(100);
+    
+    
     for(int i=0; i < num; i++) {
-//        Particle p;
-        Particle part;
-        particles.push_back(&part);
+        Particle *part = new Particle();
+        particles.push_back(part);
         particles[i]->setup();
-        color.push_back(ofColor(ofRandom(255),ofRandom(255),ofRandom(255)));
+        color.push_back(ofColor(ofRandom(255)));
         
         
     }
@@ -26,7 +28,12 @@ void ofApp::update(){
         particles[i]->bounding();
         
         
+    
     }
+    
+    std::stringstream strm;
+    strm << "fps: " << ofGetFrameRate();
+    ofSetWindowTitle(strm.str());
    
 }
 
