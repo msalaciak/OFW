@@ -23,9 +23,10 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
     
-    vector<Particle*> particles;
+
     
-    vector<ofColor> color;
-    int num = 1000;
+    vector<Particle*> particles;
+    ofImage img;
+    int num = 100000;
  
 };
