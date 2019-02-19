@@ -7,110 +7,116 @@
 
 #include "Particle.h"
 
-Particle :: Particle() {
-    pos.x = ofGetWindowWidth()*0.5;
-    pos.y = ofGetWindowHeight()*0.5;
-    pos.z = 0;
-    
-    vel.set(0,0,0);
-    acc.set(0,0,0);
-    
-    damp = 0.95;
-    radius = 20;
-    
-}
-
-void Particle :: setInit(ofPoint _pos, ofPoint _vel) {
-    pos = _pos;
-    vel = _vel;
-    acc.set(0,0,0);
+Particle:: Particle(){
+    radius =1;
     
     
 }
 
-void Particle:: addForce (ofPoint _force) {
-    
-    acc += _force;
+void Particle :: initialize(){
+    pos = ofPoint(ofRandom(-ofGetWidth()/2, ofGetWidth()/2),ofRandom(-ofGetHeight()/2, ofGetHeight()/2));
     
 }
 
-void Particle :: addRepulsion(Particle *_other, float _scale){
-    ofPoint diff = (_other->pos - pos);
+
+void Particle :: bounding() {
+    if(pos.y > ofGetHeight()/2 || pos.y < -ofGetHeight()/2){
+        vel = -vel;
+    }
+    if(pos.x > ofGetWidth()/2 || pos.x < -ofGetWidth()/2){
+        vel = -vel;
+    }
+}
     
-    if(diff.length() < _other->radius){
-        diff *= 1.0 - diff.length()/_other->radius;
-        addForce(-diff*_scale);
-        _other->addForce(diff*_scale);
+void Particle :: draw() {
+    ofDrawCircle(pos.x, pos.y, radius);
+    
+}
+
+ofPoint Particle :: cohesion(vector<Particle> *particles){
+    ofPoint centerMass;
+    for(int i = 0; i < particles->size(); i++){
+      
+        if (&(*particles)[i] == this) {
+            continue;
+        }
+        
+       
+        centerMass += (*particles)[i].pos;
         
     }
     
+    centerMass = centerMass/(particles->size()-1);
+    
+    ofPoint cohesion_velocity;
+    cohesion_velocity = (centerMass-pos)/100.0f;
+    return cohesion_velocity;
     
     
 }
 
-void  Particle :: addRepulsion(ofPoint *_pos, float _rad, float _scale){
-    ofPoint diff = *_pos - pos;
-    if(diff.length() < _rad) {
-        diff *= 1.0-diff.length()/_rad;
-        addForce(diff*_scale);
+ofPoint Particle :: seperation(vector<Particle> *particles) {
+    
+    
+    ofPoint displace;
+    for(int i = 0; i < particles->size(); i++){
+        
+        if (&(*particles)[i] == this) {
+            continue;
+        }
+        
+        
+        float dist = pow((*particles)[i].pos.x - pos.x, 2) + pow((*particles)[i].pos.y - pos.y, 2);
+        dist = sqrt(dist);
+        
+        if (dist < 10.0) {
+            displace  = displace - ((*particles)[i].pos - pos);
+        }
         
     }
+    
+    ofPoint separation_velocity;
+    separation_velocity = displace;
+    return separation_velocity;
     
     
 }
 
-void Particle :: addClockwiseForce(ofPoint *_pos, float _rad, float _scale){
-    ofVec2f diff = pos - *_pos;
-    
-    if(diff.length() < _rad) {
-        float pct = 1 - (diff.length()/_rad);
-        diff.normalize();
-        acc.x -= diff.y * pct * _scale;
-        acc.y += diff.x * pct *_scale;
-        
-        
-        
-    }
-    
-}
 
-void Particle :: addCounterClockwiseForce(ofPoint *_pos, float _rad, float _scale) {
-    ofVec2f diff = pos - *_pos;
+ofPoint Particle::allignment(vector<Particle> *particles){
     
-    if(diff.length() < _rad) {
-        float pct = 1 - (diff.length()/_rad);
-        diff.normalize();
-        acc.x += diff.y * pct * _scale;
-        acc.y -= diff.x * pct * _scale;
+    //RULE 3
+    //match velocity
+    
+    ofPoint aveVel;
+    for(int i = 0; i < particles->size(); i++){
+        //determining if the particle in the loop is itself
+        //to avoid itself
+        if (&(*particles)[i] == this) {
+            continue;
+        }
         
-        
-    }
-    
-    
-}
-
-void Particle :: update() {
-    vel += acc;
-    vel *= damp;
-    pos +=vel;
-    acc *= 0.0;
-    
-    if(pos.x < 0.0+radius || pos.x > ofGetWidth() - radius){
-        
-        pos.x -= vel.x;
-        vel.x *= -1.0;
-    }
-    
-    if(pos.y < 0,0 + radius || pos.y > ofGetHeight() - radius) {
-        pos.y -= vel.y;
-        vel.y *= -1.0;
+        aveVel += (*particles)[i].vel;
         
     }
+    
+    aveVel = aveVel/(particles->size()-1);
+    
+    ofPoint allignment_velocity;
+    allignment_velocity = (aveVel - vel)/8.0f;
+    return allignment_velocity;
     
 }
 
 
-void Particle :: draw(ofImage *_img) {
+void Particle :: update(vector<Particle> *particles){
     
-    _img-> draw(pos,radius,radius);
+    ofPoint v1 = cohesion(particles);
+    ofPoint v2 = seperation(particles);
+    ofPoint v3 = allignment(particles);
+    
+    vel += v1 + v2 + v3;
+    pos = pos + vel;
+    
+    
 }

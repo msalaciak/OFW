@@ -14,31 +14,20 @@ public:
   
     Particle();
     
-    void setInit(ofPoint _pos, ofPoint _vel = ofPoint(0,0));
+    void initialize();
+    void bounding();
+    void draw();
     
-    void addForce(ofPoint _force);
+    void update(vector <Particle> *particles);
     
-    void addRepulsion(Particle *_other, float _scale);
-    
-    void addRepulsion(ofPoint *_pos, float _rad, float _scale);
-    
-    void addAttraction(ofPoint *_pos, float _rad, float _scale);
-    
-    void addClockwiseForce (ofPoint *_pos, float _rad, float _scale);
-    
-    void addCounterClockwiseForce (ofPoint *_pos, float _rad, float _scale);
-    
-    void update();
-    
-    void draw(ofImage *_img);
+    ofPoint cohesion(vector <Particle> *particles);
+    ofPoint seperation(vector <Particle> *particles);
+    ofPoint allignment(vector <Particle> *particles);
     
     ofPoint pos;
     ofPoint vel;
-    ofPoint acc;
     
-    float radius;
-    float damp;
-    
+    int radius = 0;
     
    
     

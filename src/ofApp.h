@@ -25,8 +25,8 @@ class ofApp : public ofBaseApp{
     
 
     
-    vector<Particle*> particles;
-    ofImage img;
-    int num = 100000;
+    
+        vector <Particle> particle;
+        int num = 1000;
  
 };
